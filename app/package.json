@@ -1,0 +1,12 @@
+{
+    "name": "awl",
+    "version": "0.1.0",
+    "description": "A text-editor-based calculator for coders, built with Electron.",
+    "main": "app/main.js",
+    "author": "Jiří Mayer",
+    "license": "?",
+    "dependencies": {
+        "ace-builds": "^1.2.8",
+        "mathjs": "^3.14.1"
+    }
+}

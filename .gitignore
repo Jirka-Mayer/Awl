@@ -1,0 +1,4 @@
+node_modules
+/app/assets/compiled
+/_trash
+/mix-manifest.json

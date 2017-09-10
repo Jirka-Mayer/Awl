@@ -5,7 +5,7 @@ A calculator built on a text-editor, ideal for programmers.
 
 <p align="center"> <img src="docs/images/demo.gif" width="700"/> </p>
 
-There's no executable or installer yet, please stay excited just a little bit longer... it's comming soon
+You have to build the exceutable yourself - see [this page](docs/workflow.md).
 
 Idea
 ----

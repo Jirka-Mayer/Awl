@@ -1,17 +1,25 @@
 {
   "name": "awl",
+  "version": "0.1.0",
+  "author": "Jiří Mayer",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/Jirka-Mayer/Awl.git",
   "main": "app/main.js",
   "scripts": {
-    "start": "electron .",
+    "start": ".\\node_modules\\.bin\\electron .",
     "mix": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "test": "jasmine",
-    "pegjs": "pegjs -o app/assets/compiled/parser.js --dependency mathjs app/assets/parser.pegjs",
-    "build": ""
+    "test": ".\\node_modules\\.bin\\jasmine",
+    "pegjs": ".\\node_modules\\.bin\\pegjs -o app/assets/compiled/parser.js --dependency mathjs app/assets/parser.pegjs",
+    "build": ".\\node_modules\\.bin\\electron-packager . awl --platform=win32 --arch=x64 --out=out --overwrite"
   },
-  "author": "Jiří Mayer",
+  "dependencies": {
+    "ace-builds": "^1.2.8",
+    "mathjs": "^3.16.3"
+  },
   "devDependencies": {
     "cross-env": "^5.0.1",
     "electron": "1.6.11",
+    "electron-packager": "^9.0.1",
     "jasmine": "^2.6.0",
     "laravel-mix": "^1.0.7",
     "pegjs": "^0.10.0",

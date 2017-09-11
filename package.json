@@ -1,6 +1,7 @@
 {
   "name": "awl",
   "version": "0.1.0",
+  "description": "A text-editor-based calculator for coders, built with Electron.",
   "author": "Jiří Mayer",
   "license": "Apache-2.0",
   "repository": "https://github.com/Jirka-Mayer/Awl.git",

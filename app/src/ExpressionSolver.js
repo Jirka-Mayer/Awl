@@ -45,7 +45,9 @@ class ExpressionSolver
         for (; i < e.location.end.column; i++)
             pointer += "^"
 
-        return pointer + "\n  " + e.message + "\n"
+        pointer = "#" + pointer.substr(1)
+
+        return pointer + "\n# " + e.message + "\n#\n"
     }
 }
 

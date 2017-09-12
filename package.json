@@ -24,6 +24,7 @@
     "electron": "1.6.11",
     "electron-packager": "^9.0.1",
     "jasmine": "^2.6.0",
+    "jsdom": "^11.2.0",
     "laravel-mix": "^1.0.7",
     "pegjs": "^0.10.0",
     "stylus": "^0.54.5",

@@ -1,7 +1,7 @@
 const nearley = require("nearley")
 const grammar = require("../../app/assets/compiled/grammar.js")
 
-describe("Parser", () => {
+xdescribe("Parser", () => {
 
     it("does something", () => {
 

@@ -3,20 +3,34 @@ const {TextHighlightRules} = ace.require("ace/mode/text_highlight_rules")
 const rules = {
 "start": [
     {
+        token: "whitespace",
+        regex: /\s+/
+    },
+    {
         token: "operator",
         regex: /[\+\-\*\/\!\=\^]/
     },
     {
         token: "function",
-        regex: /choose|C|sin|cos|log|ln/
+        regex: /(choose|C|sin|cos|ln)(?=[^A-Za-z]|$)/
+    },
+    {
+        token: "function.log",
+        regex: /log$/
+    },
+    {
+        token: "function.log",
+        regex: /log(?=[^A-Za-z]|$)/,
+        next: "base"
     },
     {
         token: "constant",
-        regex: /pi|e/
+        regex: /(pi|e)(?=[^A-Za-z]|$)/,
+        next: "exponent"
     },
     {
         token: "bracket",
-        regex: /\(|\)/
+        regex: /[\(\)\[\]\{\}]/
     },
     {
         token: "number",
@@ -24,21 +38,32 @@ const rules = {
     },
     {
         token: "variable",
-        regex: /[A-Za-z]/,
-        next: "variable"
+        regex: /[A-Za-z]+$/
+    },
+    {
+        token: "variable",
+        regex: /[A-Za-z]+/,
+        next: "exponent"
     },
     {
         token: "comment",
         regex: /#.*$/
     }
 ],
-"variable": [
-    {
-        token: "variable",
-        regex: /[A-Za-z]/
-    },
+"exponent": [
     {
         token: "exponent",
+        regex: /[0-9]+/,
+        next: "start"
+    },
+    {
+        regex: /(?=.)/,
+        next: "start"
+    }
+],
+"base": [
+    {
+        token: "base",
         regex: /[0-9]+/,
         next: "start"
     },

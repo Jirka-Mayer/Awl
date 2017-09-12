@@ -77,9 +77,21 @@
     .ace_comment
         color: #6e6373
         
+    /*
+    // original exponent implementation
     .ace_exponent
         display: inline-block
         transform: translateY(-22%)
-
         font-size: smaller
         color: #b2abcc
+    */
+        
+    .ace_exponent
+        display: inline-block
+        transform: translateX(-10%) scale(0.8) translateY(-22%)
+        color: #b2abcc
+        
+    .ace_base
+        display: inline-block
+        transform: translateX(-10%) scale(0.8) translateY(+22%)
+        color: #eaae7d

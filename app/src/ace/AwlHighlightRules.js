@@ -4,14 +4,22 @@ const rules = {
 "start": [
     {
         token: "operator",
-        regex: /[\+\-\*\/\!\=\^]|choose|C|sin|cos/
+        regex: /[\+\-\*\/\!\=\^]/
+    },
+    {
+        token: "function",
+        regex: /choose|C|sin|cos|log|ln/
+    },
+    {
+        token: "constant",
+        regex: /pi|e/
     },
     {
         token: "bracket",
         regex: /\(|\)/
     },
     {
-        token: "constant",
+        token: "number",
         regex: /(?:\d\d*(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+\b)?/
     },
     {

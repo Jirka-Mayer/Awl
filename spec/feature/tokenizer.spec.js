@@ -68,14 +68,14 @@ describe("Tokenizer", () => {
     it("tokenizes integers", () => {
         this.tokenize("56")
         this.expectTokens().toEqual([
-            { type: "constant.numeric", value: "56" }
+            { type: "number", value: "56" }
         ])
     })
 
     it("tokenizes operators", () => {
         this.tokenize("+")
         this.expectTokens().toEqual([
-            { type: "keyword", value: "+" }
+            { type: "operator", value: "+" }
         ])
     })
 

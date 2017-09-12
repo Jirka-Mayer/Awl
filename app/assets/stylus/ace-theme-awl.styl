@@ -1,7 +1,14 @@
 .ace-monokai
+    &.ace_editor
+        font-size: 22px
+        font-family: "Fira Code"
+    
+        background: #322C35
+        color: #fff
+
     .ace_gutter
-        background: #2F3129
-        color: #8F908A
+        background: #2b262d
+        color: #6e636d
 
     .ace_print-margin
         width: 1px
@@ -19,7 +26,7 @@
 
     .ace_marker-layer
         .ace_selection
-            background: #49483E
+            background: #3f3a42
         
         .ace_step
             background: rgb(102, 82, 0)
@@ -29,13 +36,13 @@
             border: 1px solid #49483E
 
         .ace_active-line
-            background: #202020
+            background: #29242b
 
         .ace_selected-word
             border: 1px solid #49483E
 
     .ace_gutter-active-line
-        background-color: #272727
+        background-color: #1e1d1f
 
     .ace_invisible
         color: #52524d
@@ -52,23 +59,27 @@
     ////////////
 
     .ace_operator
-        color: #F92672
+        color: #d2476c
+    
+    .ace_constant,    
+    .ace_function
+        color: #e6955a
+
+    .ace_number
+        color: #e8d3d3
+
+    .ace_variable
+        color: #9789cc
         
     .ace_bracket
         color: #fff
 
-    .ace_constant
-        color: #AE81FF
-
-    .ace_variable
-        color: #66D9EF
-
     .ace_comment
-        color: #75715E
+        color: #6e6373
         
     .ace_exponent
         display: inline-block
         transform: translateY(-22%)
 
-        color: #FD971F
         font-size: smaller
+        color: #b2abcc

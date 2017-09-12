@@ -12,9 +12,10 @@ const AwlKeyboardHandler = require("./ace/AwlKeyboardHandler.js")
 // create the editor
 const editor = ace.edit("editor")
 
-// set editor theme and mode
+// set editor appearance
 editor.setTheme("ace/theme/awl")
 editor.session.setMode("ace/mode/awl")
+editor.setShowPrintMargin(false)
 
 // register command for solving expressions
 editor.commands.addCommand(solveExpressionCommand)

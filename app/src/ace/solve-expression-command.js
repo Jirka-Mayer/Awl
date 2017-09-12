@@ -1,4 +1,4 @@
-let ExpressionSolver = require("./ExpressionSolver.js")
+let ExpressionSolver = require("../ExpressionSolver.js")
 
 /**
  * The command for solving an expression
@@ -16,10 +16,9 @@ module.exports = {
     exec: function(editor) {
         
         let row = editor.selection.lead.row
-        let expression = editor.session.getLine(row)
-
-        let solver = new ExpressionSolver()
-        let response = solver.solve(expression)
+        
+        let solver = new ExpressionSolver(editor)
+        let response = solver.solve(row)
 
         if (!response)
             response = ""

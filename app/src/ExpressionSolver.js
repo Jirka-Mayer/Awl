@@ -3,21 +3,24 @@ let awlParser = require("../assets/compiled/parser.js")
 
 class ExpressionSolver
 {
-    construct()
+    constructor(editor)
     {
-
+        this.$editor = editor
     }
 
-    solve(expressionString)
+    solve(row)
     {
-        if (!expressionString.trim())
+        let expression = this.$editor.session.getLine(row)
+        let tokens = this.$editor.session.getTokens(row)
+
+        if (!expression.trim())
             return
 
         let original, simplified
 
         try
         {
-            original = awlParser.parse(expressionString)
+            original = awlParser.parse(expression)
             simplified = math.simplify(original)
         }
         catch (e)

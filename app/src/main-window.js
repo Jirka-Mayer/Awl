@@ -1,17 +1,16 @@
 require("ace-builds/src/ace.js")
 require("ace-builds/src/theme-monokai.js")
+require("./ace/AwlMode.js")
 
-//require("./ace/mode-awl.js")
-
-let solveExpressionCommand = require("./solve-expression-command.js")
-let AwlKeyboardHandler = require("./AwlKeyboardHandler.js")
+const solveExpressionCommand = require("./ace/solve-expression-command.js")
+const AwlKeyboardHandler = require("./ace/AwlKeyboardHandler.js")
 
 ///////////////
 // Bootstrap //
 ///////////////
 
 // create the editor
-let editor = ace.edit("editor")
+const editor = ace.edit("editor")
 
 // set editor theme and mode
 editor.setTheme("ace/theme/monokai")

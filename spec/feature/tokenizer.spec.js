@@ -1,3 +1,5 @@
+const PostTokenizer = require("../../app/src/PostTokenizer.js")
+
 describe("Tokenizer", () => {
 
     beforeAll(() => {
@@ -7,9 +9,19 @@ describe("Tokenizer", () => {
         // silence warnings from ACE
         console.warn = () => {}
 
-        this.tokenize = (expression) => {
+        this.tokenize = (expression, posttokenize) => {
+            if (posttokenize === undefined)
+                posttokenize = true
+
             editor.setValue(expression)
             this.tokens = editor.session.getTokens(0)
+            
+            if (posttokenize)
+            {
+                let pt = new PostTokenizer(this.tokens)
+                this.tokens = pt.run()
+            }
+
             return this.tokens
         }
 
@@ -29,10 +41,13 @@ describe("Tokenizer", () => {
     })
 
     it("tokenizes whitespace", () => {
-        this.tokenize(" \t   ")
+        this.tokenize(" \t   ", false)
         this.expectTokens().toEqual([
             { type: "whitespace", value: " \t   " }
         ])
+
+        this.tokenize(" \t   ", true)
+        this.expectTokens().toEqual([])
     })
 
     /////////////
@@ -75,6 +90,35 @@ describe("Tokenizer", () => {
         this.tokenize("**")
         this.expectTokens().toEqual([
             { type: "operator", value: "**" }
+        ])
+
+        this.tokenize("//")
+        this.expectTokens().toEqual([
+            { type: "operator", value: "//" }
+        ])
+    })
+
+    //////////////
+    // Brackets //
+    //////////////
+
+    it("tokenizes brackets", () => {
+        this.tokenize("(3)")
+        this.expectTokens().toEqual([
+            { type: "bracket", value: "(" },
+            { type: "number", value: "3" },
+            { type: "bracket", value: ")" }
+        ])
+    })
+
+    it("splits brackets", () => {
+        this.tokenize("((3))")
+        this.expectTokens().toEqual([
+            { type: "bracket", value: "(" },
+            { type: "bracket", value: "(" },
+            { type: "number", value: "3" },
+            { type: "bracket", value: ")" },
+            { type: "bracket", value: ")" }
         ])
     })
 
@@ -149,11 +193,16 @@ describe("Tokenizer", () => {
     //////////////
 
     it("tokenizes comments", () => {
-        this.tokenize("lorem # comment content")
+        this.tokenize("lorem # comment content", false)
         this.expectTokens().toEqual([
             { type: "variable", value: "lorem" },
             { type: "whitespace", value: " " },
             { type: "comment", value: "# comment content" }
+        ])
+
+        this.tokenize("lorem # comment content", true)
+        this.expectTokens().toEqual([
+            { type: "variable", value: "lorem" }
         ])
     })
 

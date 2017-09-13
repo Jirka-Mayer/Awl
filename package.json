@@ -10,8 +10,7 @@
     "start": ".\\node_modules\\.bin\\electron .",
     "mix": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "test": ".\\node_modules\\.bin\\jasmine",
-    "pegjs": ".\\node_modules\\.bin\\pegjs -o app/assets/compiled/parser.js --dependency mathjs app/assets/parser.pegjs",
-    "nearley": ".\\node_modules\\.bin\\nearleyc app/assets/grammar.ne -o app/assets/compiled/grammar.js",
+    "nearley": ".\\node_modules\\.bin\\nearleyc app/assets/nearley/grammar.ne -o app/assets/compiled/grammar.js",
     "build": ".\\node_modules\\.bin\\electron-packager . awl --platform=win32 --arch=x64 --out=out --overwrite"
   },
   "dependencies": {
@@ -26,7 +25,6 @@
     "jasmine": "^2.6.0",
     "jsdom": "^11.2.0",
     "laravel-mix": "^1.0.7",
-    "pegjs": "^0.10.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1"
   }

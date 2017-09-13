@@ -9,7 +9,7 @@ Setup:
 Compile all assets:
 
 - `npm run mix` - styles
-- `npm run pegjs` - parser
+- `npm run nearley` - parser
 
 Run the app:
 

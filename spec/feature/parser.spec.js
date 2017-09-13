@@ -1,3 +1,4 @@
+const PostTokenizer = require("../../app/src/PostTokenizer.js")
 const nearley = require("nearley")
 const grammar = require("../../app/assets/compiled/grammar.js")
 
@@ -13,16 +14,25 @@ describe("Parser", () => {
         this.tokenize = (expression) => {
             editor.setValue(expression)
             this.tokens = editor.session.getTokens(0)
+            
+            let pt = new PostTokenizer(this.tokens)
+            this.tokens = pt.run()
+
             return this.tokens
         }
 
         this.parse = (expression) => {
             let tokens = this.tokenize(expression)
+            
             let parser = new nearley.Parser(
                 nearley.Grammar.fromCompiled(grammar)
             )
+            
             parser.feed(tokens)
             this.parserResult = parser.results[0]
+            
+            expect(parser.results.length).toBe(1, "Ambiguous grammar")
+
             return this.parserResult
         }
 
@@ -63,6 +73,134 @@ describe("Parser", () => {
 
         this.parse("42 * 50 + 8")
         this.expectResult("42 * 50 + 8")
+    })
+
+    it("handles parentheses in multiplication", () => {
+        this.parse("(42 + 50) * 8")
+        this.expectResult("(42 + 50) * 8")
+
+        this.parse("(42 * 50) + 8")
+        this.expectResult("42 * 50 + 8")
+    })
+
+    it("parses infix operators", () => {
+        this.parse("5 ** 2")
+        this.expectResult("5 ^ 2")
+
+        this.parse("2 // 4")
+        this.expectResult("nthRoot(4, 2)")
+
+        this.parse("4 choose 3")
+        this.expectResult("combinations(4, 3)")
+    })
+
+    it("handles parentheses in infixes", () => {
+        this.parse("5 ^ 2 ^ 3")
+        this.expectResult("(5 ^ 2) ^ 3")
+
+        this.parse("5 ^ (2 ^ 3)")
+        this.expectResult("5 ^ 2 ^ 3")
+
+        this.parse("2 * 2 ^ 3")
+        this.expectResult("2 * 2 ^ 3")
+
+        this.parse("(2 * 2) ^ 3")
+        this.expectResult("(2 * 2) ^ 3")
+    })
+
+    ////////////////////////
+    // Fancier operations //
+    ////////////////////////
+
+    it("parses unary prefixes", () => {
+        this.parse("-5")
+        this.expectResult("-5")
+
+        this.parse("-x2")
+        this.expectResult("-x ^ 2")
+
+        this.parse("-4x2")
+        this.expectResult("-(4 * x ^ 2)")
+
+        this.parse("2 - -5")
+        this.expectResult("2 - -5")
+
+        this.parse("2 + -5x")
+        this.expectResult("2 + -(5 * x)")
+    })
+
+    it("parses unary postfixes", () => {
+        this.parse("5!")
+        this.expectResult("5!")
+
+        this.parse("2 + 5!")
+        this.expectResult("2 + 5!")
+
+        this.parse("5! - 2")
+        this.expectResult("5! - 2")
+
+        this.parse("2 * 5!")
+        this.expectResult("2 * 5!")
+
+        this.parse("5! * 2")
+        this.expectResult("5! * 2")
+
+        this.parse("-5!")
+        this.expectResult("-5!")
+
+        this.parse("(x + 1)!")
+        this.expectResult("(x + 1)!")
+
+        this.parse("2 ^ 3!")
+        this.expectResult("2 ^ 3!")
+
+        this.parse("2! ^ 3")
+        this.expectResult("2! ^ 3")
+    })
+
+    ///////////////
+    // Variables //
+    ///////////////
+
+    it("parses variables", () => {
+        this.parse("x")
+        this.expectResult("x")
+
+        this.parse("x + 5")
+        this.expectResult("x + 5")
+    })
+
+    it("parses constants as variables", () => {
+        this.parse("pi")
+        this.expectResult("pi")
+    })
+
+    /////////////////////
+    // Syntactic hacks //
+    /////////////////////
+
+    it("parses tight multiplication", () => {
+        this.parse("5x")
+        this.expectResult("5 * x")
+
+        this.parse("5(x + 1)")
+        this.expectResult("5 * (x + 1)")
+
+        this.parse("a(x + 1)")
+        this.expectResult("a * (x + 1)")
+
+        this.parse("(x - 1)(x + 1)")
+        this.expectResult("(x - 1) * (x + 1)")
+    })
+
+    it("parses tight exponentiation", () => {
+        this.parse("x2")
+        this.expectResult("x ^ 2")
+    })
+
+    it("parses supertight expressions", () => {
+        this.parse("4x2")
+        this.expectResult("4 * x ^ 2")
     })
 
 })

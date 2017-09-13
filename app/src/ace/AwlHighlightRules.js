@@ -8,7 +8,7 @@ const rules = {
     },
     {
         token: "operator",
-        regex: /[\+\-\*\/\!\=\^]/
+        regex: /[\+\-\*\/\!\=\^\<\>]/
     },
     {
         token: "function",
@@ -22,6 +22,10 @@ const rules = {
         token: "function.log",
         regex: /log(?=[^A-Za-z]|$)/,
         next: "base"
+    },
+    {
+        token: "constant",
+        regex: /(pi|e)$/
     },
     {
         token: "constant",

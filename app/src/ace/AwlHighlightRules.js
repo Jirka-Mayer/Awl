@@ -1,5 +1,20 @@
 const {TextHighlightRules} = ace.require("ace/mode/text_highlight_rules")
 
+const constants = [
+    "pi", "e", "PI", "E", "phi", "tau",
+    "null", "NaN", "Infinity",
+    "version"
+]
+
+const functions = [
+    "sin", "cos", "ln", "exp",
+    // log is extra
+    "floor", "ceil",
+    "gcd", "random"
+]
+
+const numberRegex = /(?:\d\d*(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+\b)?/
+
 const rules = {
 "start": [
     {
@@ -12,7 +27,11 @@ const rules = {
     },
     {
         token: "function",
-        regex: /(choose|C|sin|cos|ln)(?=[^A-Za-z]|$)/
+        regex: new RegExp("(" + functions.join("|") + ")(?=[^A-Za-z]|$)")
+    },
+    {
+        token: "function.infix",
+        regex: /(choose|C)(?=[^A-Za-z]|$)/
     },
     {
         token: "function.log",
@@ -25,11 +44,11 @@ const rules = {
     },
     {
         token: "constant",
-        regex: /(pi|e)$/
+        regex: new RegExp("(" + constants.join("|") + ")$")
     },
     {
         token: "constant",
-        regex: /(pi|e)(?=[^A-Za-z]|$)/,
+        regex: new RegExp("(" + constants.join("|") + ")(?=[^A-Za-z]|$)"),
         next: "exponent"
     },
     {
@@ -37,8 +56,12 @@ const rules = {
         regex: /[\(\)\[\]\{\}]/
     },
     {
+        token: "comma",
+        regex: /[\,]/
+    },
+    {
         token: "number",
-        regex: /(?:\d\d*(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+\b)?/
+        regex: numberRegex
     },
     {
         token: "variable",
@@ -57,7 +80,7 @@ const rules = {
 "exponent": [
     {
         token: "exponent",
-        regex: /[0-9]+/,
+        regex: numberRegex,
         next: "start"
     },
     {
@@ -68,7 +91,7 @@ const rules = {
 "base": [
     {
         token: "base",
-        regex: /[0-9]+/,
+        regex: numberRegex,
         next: "start"
     },
     {

@@ -203,4 +203,54 @@ describe("Parser", () => {
         this.expectResult("4 * x ^ 2")
     })
 
+    ///////////////
+    // Functions //
+    ///////////////
+
+    it("parses function", () => {
+        this.parse("sin 5")
+        this.expectResult("sin(5)")
+
+        this.parse("sin(5)")
+        this.expectResult("sin(5)")
+
+        this.parse("sin(5 + x)")
+        this.expectResult("sin(5 + x)")
+
+        this.parse("sin x")
+        this.expectResult("sin(x)")
+
+        this.parse("sin 2x")
+        this.expectResult("sin(2 * x)")
+
+        this.parse("sin x3")
+        this.expectResult("sin(x ^ 3)")
+
+        this.parse("sin 2x3")
+        this.expectResult("sin(2 * x ^ 3)")
+
+        this.parse("sin 2x3 ^ 2")
+        this.expectResult("sin(2 * x ^ 3) ^ 2")
+
+        this.parse("sin 2x(3 ^ 2)")
+        this.expectResult("sin(2 * x * 3 ^ 2)")
+
+        this.parse("gcd(5, 6)")
+        this.expectResult("gcd(5, 6)")
+
+        this.parse("log2 8")
+        this.expectResult("log(8, 2)")
+
+        this.parse("log2 2x3")
+        this.expectResult("log(2 * x ^ 3, 2)")
+
+        this.parse("log2(pi)")
+        this.expectResult("log(pi, 2)")
+
+        this.parse("log 100")
+        this.expectResult("log(100, 10)")
+
+        this.parse("log(a, b)")
+        this.expectResult("log(b, a)")
+    })
 })

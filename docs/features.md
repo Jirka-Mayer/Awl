@@ -43,6 +43,13 @@ read and tedious to write even in 3 dimensions.
 Same applies to matricies.
 
 
+##### Complex numbers
+
+In the future gonna be implemented.
+
+    2i + 3i + 5
+
+
 ##### Custom functions
 
 Probbably not, because they would only be present in a single

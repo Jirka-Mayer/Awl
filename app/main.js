@@ -11,7 +11,11 @@ let win
 
 function createWindow()
 {
-    win = new BrowserWindow({width: 800, height: 600})
+    win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        icon: path.join(__dirname, "assets/icon.ico")
+    })
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, "assets/html/main-window.html"),

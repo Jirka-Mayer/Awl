@@ -16,6 +16,7 @@ const editor = ace.edit("editor")
 editor.setTheme("ace/theme/awl")
 editor.session.setMode("ace/mode/awl")
 editor.setShowPrintMargin(false)
+editor.session.setUseWrapMode(true)
 
 // register command for solving expressions
 editor.commands.addCommand(solveExpressionCommand)

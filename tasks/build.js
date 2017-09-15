@@ -9,7 +9,7 @@ packager({
     asar: true,
     overwrite: true,
     out: path.join(__dirname, "../out"),
-    //icon: path.join(__dirname, "../app/assets/icon.ico"),
+    icon: path.join(__dirname, "../app/assets/icon.ico"),
     "version-string": {
         ProductName: "Awl",
         CompanyName: "Jirka Mayer"

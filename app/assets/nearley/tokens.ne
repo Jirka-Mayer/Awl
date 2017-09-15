@@ -60,10 +60,11 @@ const multiplicationToken = token("operator", ["*", "/"])
 
 const leftBraceToken = token("bracket", "(")
 const rightBraceToken = token("bracket", ")")
+const commaToken = token("comma")
 
 const infixToken = anyToken([
     token("operator", ["^", "**", "//"]),
-    token("function", ["C", "choose"])
+    token("function.infix", ["C", "choose"])
 ])
 
 const variableToken = anyToken([
@@ -76,5 +77,10 @@ const exponentToken = token("exponent")
 const unaryPrefixOperatorToken = token("operator", ["+", "-"])
 
 const unaryPostfixOperatorToken = token("operator", ["!"])
+
+const functionToken = token("function")
+
+const logToken = token("function.log")
+const baseToken = token("base")
 
 %}

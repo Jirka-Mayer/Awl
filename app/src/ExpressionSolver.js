@@ -77,7 +77,21 @@ class ExpressionSolver
 
     $simplify()
     {
-        this.simplified = math.simplify(this.parsed)
+        /*
+            Try to evaluate. If not possible because
+            of symbols, try to simplify then
+         */
+        try
+        {
+            this.simplified = this.parsed.eval()
+        }
+        catch (e)
+        {
+            if (e.message.match("Undefined symbol"))
+                this.simplified = math.simplify(this.parsed)
+            else
+                throw e
+        }
 
         if (this.simplified.toString() === this.parsed.toString())
             throw new NoDifferenceException()
@@ -108,7 +122,7 @@ class ExpressionSolver
         if ("offset" in e && "token" in e)
             return this.$handleUnexpectedToken(e)
 
-        throw e
+        return this.$handleUnknownException(e)
     }
 
     $handleInputNotParsed(e)
@@ -155,6 +169,15 @@ class ExpressionSolver
 
         return "#" + pointer + "\n" +
                "# Unexpected token: " + tokenIdentifier + "\n" +
+               "#\n"
+    }
+
+    $handleUnknownException(e)
+    {
+        console.error(e)
+        
+        return "#\n" +
+               "# Exception: " + e.message + "\n" +
                "#\n"
     }
 }

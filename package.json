@@ -11,8 +11,10 @@
     "mix": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "test": ".\\node_modules\\.bin\\jasmine",
     "nearley": ".\\node_modules\\.bin\\nearleyc app/assets/nearley/grammar.ne -o app/assets/compiled/grammar.js",
-    "build": "node ./tasks/build.js",
-    "installer": "node ./tasks/build-installer.js"
+    "build-win32": "node ./tasks/build-win32.js",
+    "build-win64": "node ./tasks/build-win64.js",
+    "installer32": "node ./tasks/build-installer32.js",
+    "installer64": "node ./tasks/build-installer64.js"
   },
   "dependencies": {
     "ace-builds": "^1.2.8",

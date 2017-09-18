@@ -64,7 +64,7 @@ const commaToken = token("comma")
 
 const infixToken = anyToken([
     token("operator", ["^", "**", "//"]),
-    token("function.infix", ["C", "choose"])
+    token("function.infix", ["C", "choose", "mod"])
 ])
 
 const variableToken = anyToken([

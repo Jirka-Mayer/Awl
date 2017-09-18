@@ -7,6 +7,7 @@ let resultPromise = electronInstaller.createWindowsInstaller({
     authors: "Jirka Mayer",
     exe: "Awl.exe",
     setupExe: "AwlSetup.exe",
+    setupIcon: path.join(__dirname, "../app/assets/icon.ico"),
     noMsi: true
 })
 

@@ -31,7 +31,7 @@ const rules = {
     },
     {
         token: "function.infix",
-        regex: /(choose|C)(?=[^A-Za-z]|$)/
+        regex: /(choose|C|mod)(?=[^A-Za-z]|$)/
     },
     {
         token: "function.log",

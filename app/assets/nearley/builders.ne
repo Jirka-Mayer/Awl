@@ -62,6 +62,9 @@ function buildInfix([a, _, operator, __, b])
         case "choose":
         case "C":
             return new math.expression.node.FunctionNode("combinations", [a, b])
+
+        case "mod":
+            return new math.expression.node.FunctionNode("mod", [a, b])
     }
 }
 

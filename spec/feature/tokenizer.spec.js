@@ -1,4 +1,4 @@
-const PostTokenizer = require("../../app/src/PostTokenizer.js")
+const PostTokenizer = require("../../app/awl/PostTokenizer.js")
 
 describe("Tokenizer", () => {
 

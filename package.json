@@ -5,19 +5,20 @@
   "author": "Jirka Mayer",
   "license": "Apache-2.0",
   "repository": "https://github.com/Jirka-Mayer/Awl.git",
-  "main": "app/main.js",
+  "main": "app/electron/main.js",
   "scripts": {
     "start": ".\\node_modules\\.bin\\electron .",
-    "mix": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules\\.bin\\webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "dev": "cross-env NODE_ENV=development node_modules\\.bin\\webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "test": ".\\node_modules\\.bin\\jasmine",
-    "nearley": ".\\node_modules\\.bin\\nearleyc app/assets/nearley/grammar.ne -o app/assets/compiled/grammar.js",
+    "nearley": ".\\node_modules\\.bin\\nearleyc app/awl/nearley/grammar.ne -o app/awl/nearley/grammar.js",
     "build-win32": "node ./tasks/build-win32.js",
     "build-win64": "node ./tasks/build-win64.js",
     "installer32": "node ./tasks/build-installer32.js",
     "installer64": "node ./tasks/build-installer64.js"
   },
   "dependencies": {
-    "ace-builds": "^1.2.8",
+    "brace": "^0.10.0",
     "electron-squirrel-startup": "^1.0.0",
     "mathjs": "^3.16.3",
     "nearley": "^2.11.0"
@@ -29,7 +30,7 @@
     "electron-winstaller": "^2.6.3",
     "jasmine": "^2.6.0",
     "jsdom": "^11.2.0",
-    "laravel-mix": "^1.0.7",
+    "laravel-mix": "^1.4.5",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1"
   }

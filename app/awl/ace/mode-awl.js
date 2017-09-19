@@ -1,4 +1,4 @@
-const TextMode = ace.require("ace/mode/text").Mode
+const TextMode = ace.acequire("ace/mode/text").Mode
 const AwlHighlightRules = require("./AwlHighlightRules.js")
 
 class AwlMode extends TextMode

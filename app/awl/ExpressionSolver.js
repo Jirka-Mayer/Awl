@@ -1,7 +1,7 @@
 const math = require("mathjs")
-const PostTokenizer = require("../../app/src/PostTokenizer.js")
 const nearley = require("nearley")
-const grammar = require("../../app/assets/compiled/grammar.js")
+const grammar = require("./nearley/grammar.js")
+const PostTokenizer = require("./PostTokenizer.js")
 
 const InputEmptyException = require("./Exceptions/InputEmptyException.js")
 const NoDifferenceException = require("./Exceptions/NoDifferenceException.js")

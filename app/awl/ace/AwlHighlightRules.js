@@ -1,4 +1,4 @@
-const {TextHighlightRules} = ace.require("ace/mode/text_highlight_rules")
+const {TextHighlightRules} = ace.acequire("ace/mode/text_highlight_rules")
 
 const constants = [
     "pi", "e", "PI", "E", "phi", "tau",

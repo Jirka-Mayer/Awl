@@ -9,6 +9,9 @@ const {JSDOM} = require("jsdom")
     - ACE loads via AMD under CommonJS
     - ACE thinks it's running in a browser, but it doesn't
 
+    Update:
+    - ACE is loaded via "brace" - even greater madness
+
     ¯\_(ツ)_/¯
  */
 
@@ -28,8 +31,8 @@ const dom = new JSDOM(`
 global.document = dom.window.document
 global.window = global
 
-require("ace-builds/src/ace.js")
-require("../../app/src/ace/mode-awl.js")
+require("brace")
+require("../../app/awl/ace/mode-awl.js")
 
 const editor = global.ace.edit("editor")
 editor.session.setMode("ace/mode/awl")

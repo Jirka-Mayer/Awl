@@ -1,6 +1,6 @@
-const PostTokenizer = require("../../app/src/PostTokenizer.js")
+const PostTokenizer = require("../../app/awl/PostTokenizer.js")
 const nearley = require("nearley")
-const grammar = require("../../app/assets/compiled/grammar.js")
+const grammar = require("../../app/awl/nearley/grammar.js")
 
 describe("Parser", () => {
 

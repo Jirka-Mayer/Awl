@@ -4,7 +4,7 @@
 function id(x) {return x[0]; }
 
 
-const math = require("mathjs")
+const math = require("../math.js")
 
 function buildNumber([token])
 {

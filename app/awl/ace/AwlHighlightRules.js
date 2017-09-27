@@ -7,10 +7,11 @@ const constants = [
 ]
 
 const functions = [
-    "sin", "cos", "ln", "exp",
-    // log is extra
-    "floor", "ceil",
-    "gcd", "random"
+    "ln", "exp",
+    "sin", "cos", "tan",
+    "asin", "acos", "atan",
+    "floor", "ceil", "gcd",
+    "gcd", "random", "randomInt"
 ]
 
 const numberRegex = /(?:\d\d*(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+\b)?/

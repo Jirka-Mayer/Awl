@@ -1,6 +1,6 @@
 @{%
 
-const math = require("mathjs")
+const math = require("../math.js")
 
 function buildNumber([token])
 {

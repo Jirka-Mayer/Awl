@@ -1,4 +1,4 @@
-const math = require("mathjs")
+const math = require("./math.js")
 const nearley = require("nearley")
 const grammar = require("./nearley/grammar.js")
 const PostTokenizer = require("./PostTokenizer.js")

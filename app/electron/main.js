@@ -14,7 +14,11 @@ function createWindow()
     win = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: path.join(__dirname, "../icon.ico")
+
+        // .ico on windows, .png otherwise
+        icon: /^win/.test(process.platform) ?
+            path.join(__dirname, "../icon.ico") :
+            path.join(__dirname, "../icon.png")
     })
 
     win.loadURL(url.format({

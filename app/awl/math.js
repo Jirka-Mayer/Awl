@@ -6,8 +6,7 @@
 const core = require("mathjs/core")
 
 let instance = core.create({
-    /*number: "BigNumber",
-    precision: 32*/
+    number: "Fraction"
 })
 
 instance.import([
@@ -19,6 +18,7 @@ instance.import([
     require("mathjs/lib/error"),
 
     require("mathjs/lib/function/algebra/simplify"),
+    require("mathjs/lib/function/string/format"),
 
     ///////////////
     // Functions //

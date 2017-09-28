@@ -31,11 +31,6 @@ class ExpressionSolver
         {
             return this.$handleError(e)
         }
-
-        if (original.toString() === simplified.toString())
-            return
-
-        return simplified.toString()
     }
 
     $getTokens(row)
@@ -93,13 +88,18 @@ class ExpressionSolver
                 throw e
         }
 
-        if (this.simplified.toString() === this.parsed.toString())
+        // debug
+        window.result = this.simplified
+        window.parsed = this.parsed
+
+        if (math.format(this.simplified) === math.format(this.parsed))
             throw new NoDifferenceException()
     }
 
     $print()
     {
-        return this.simplified.toString()
+        return math.format(this.simplified, { fraction: "ratio" })
+        // "ratio" or "decimal"
     }
 
     $handleError(e)

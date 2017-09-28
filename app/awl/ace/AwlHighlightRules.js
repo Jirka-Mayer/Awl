@@ -1,7 +1,7 @@
 const {TextHighlightRules} = ace.acequire("ace/mode/text_highlight_rules")
 
 const constants = [
-    "pi", "e", "PI", "E", "phi", "tau",
+    "phi", "tau",
     "null", "NaN", "Infinity",
     "version"
 ]
@@ -26,6 +26,7 @@ const rules = {
         token: "operator",
         regex: /[\+\-\*\/\!\=\^\<\>]/
     },
+    { token: "operator.sqrt", regex: /v\// },
     {
         token: "function",
         regex: new RegExp("(" + functions.join("|") + ")(?=[^A-Za-z]|$)")
@@ -34,15 +35,8 @@ const rules = {
         token: "function.infix",
         regex: /(choose|C|mod)(?=[^A-Za-z]|$)/
     },
-    {
-        token: "function.log",
-        regex: /log$/
-    },
-    {
-        token: "function.log",
-        regex: /log(?=[^A-Za-z]|$)/,
-        next: "base"
-    },
+    { token: "function.log", regex: /log$/ },
+    { token: "function.log", regex: /log(?=[^A-Za-z]|$)/, next: "base" },
     {
         token: "constant",
         regex: new RegExp("(" + constants.join("|") + ")$")
@@ -52,6 +46,10 @@ const rules = {
         regex: new RegExp("(" + constants.join("|") + ")(?=[^A-Za-z]|$)"),
         next: "exponent"
     },
+    { token: "constant.pi", regex: /pi$/ },
+    { token: "constant.pi", regex: /pi(?=[^A-Za-z]|$)/, next: "exponent" },
+    { token: "constant.e", regex: /e$/ },
+    { token: "constant.e", regex: /e(?=[^A-Za-z]|$)/, next: "exponent" },
     {
         token: "bracket",
         regex: /[\(\)\[\]\{\}]/

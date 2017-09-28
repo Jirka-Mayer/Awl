@@ -69,7 +69,9 @@ const infixToken = anyToken([
 
 const variableToken = anyToken([
     token("variable"),
-    token("constant")
+    token("constant"),
+    token("constant.pi"),
+    token("constant.e")
 ])
 
 const exponentToken = token("exponent")

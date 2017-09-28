@@ -61,10 +61,55 @@
 
     .ace_operator
         color: #d2476c
-    
-    .ace_constant,    
+        
+    .ace_operator.ace_sqrt
+        position: relative
+        display: inline-block
+        color: transparent
+        
+        &:after
+            content: "√"
+            display: block
+            position: absolute
+            top: -0.05em
+            left: 0.15em
+            font-size: 1.3em
+            color: #d2476c
+            
+        & + .ace_number, & + .ace_variable, & + .ace_constant
+            position: relative
+            display: inline-block
+
+            &:before
+                $overhang = 0.1em
+                content: ""
+                display: block
+                position: absolute
+                box-sizing: content-box
+                padding: 0 $overhang
+                top: 0.05em
+                left: - $overhang
+                width: 100%
+                height: 0.08em
+                background: #d2476c
+        
+    .ace_constant,
     .ace_function
         color: #e6955a
+        
+    .ace_constant.ace_pi
+        position: relative
+        display: inline-block
+        color: transparent
+        
+        &:after
+            content: "π"
+            display: block
+            position: absolute
+            top: -0.15em
+            left: 0.15em
+            font-size: 1.3em
+            color: #e6955a
 
     .ace_number
         color: #e8d3d3
@@ -77,15 +122,6 @@
 
     .ace_comment
         color: #6e6373
-        
-    /*
-    // original exponent implementation
-    .ace_exponent
-        display: inline-block
-        transform: translateY(-22%)
-        font-size: smaller
-        color: #b2abcc
-    */
         
     .ace_exponent
         display: inline-block

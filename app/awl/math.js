@@ -12,7 +12,7 @@ let instance = core.create({
 
 instance.import([
     
-    require("mathjs/lib/type"),
+    require("mathjs/lib/type/fraction"),
 
     require("mathjs/lib/expression"),
 

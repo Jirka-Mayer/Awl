@@ -6,12 +6,14 @@
 const core = require("mathjs/core")
 
 let instance = core.create({
-    number: "Fraction"
+    number: "BigNumber",
+    precision: 16
 })
 
 instance.import([
     
     require("mathjs/lib/type/fraction"),
+    require("mathjs/lib/type/bignumber"),
 
     require("mathjs/lib/expression"),
 

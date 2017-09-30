@@ -1,12 +1,19 @@
-class PostTokenizer
+class Tokenizer
 {
-    constructor(tokens)
+    constructor(ace)
     {
-        this.tokens = tokens.slice()
+        this.ace = ace
+
+        this.tokens = null
     }
 
-    run()
+    /**
+     * Returns tokens at a row
+     */
+    getTokens(row)
     {
+        this.tokens = this.ace.editor.session.getTokens(row)
+
         this.$removeComments()
         this.$trim()
         this.$splitBrackets()
@@ -71,4 +78,4 @@ class PostTokenizer
     }
 }
 
-module.exports = PostTokenizer
+module.exports = Tokenizer

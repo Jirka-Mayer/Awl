@@ -1,5 +1,5 @@
 const TextMode = ace.acequire("ace/mode/text").Mode
-const AwlHighlightRules = require("./AwlHighlightRules.js")
+const AwlHighlightRules = require("../Tokenization/AwlHighlightRules.js")
 
 class AwlMode extends TextMode
 {

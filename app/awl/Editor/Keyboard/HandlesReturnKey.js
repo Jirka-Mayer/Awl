@@ -1,10 +1,15 @@
 class HandlesReturnKey
 {
-    constructor(editor)
+    constructor(ace)
     {
-        this.$editor = editor
+        this.ace = ace
     }
 
+    /**
+     * Handle "return key" keypress
+     *
+     * Called from the KeyboardHandler
+     */
     handleKeyPress(keyString, keyCode, e)
     {
         if (e.shiftKey)
@@ -18,24 +23,22 @@ class HandlesReturnKey
 
         e.preventDefault()
 
-        this.$editor.forEachSelection(
-            this.$editor.commands.byName["solveExpression"]
-        )
+        // start the magic
+        this.ace.fire("expressionSubmit")
     }
-
+    
     $nothingSelected()
     {
-        return this.$editor.getSelectedText() === ""
+        return this.ace.editor.getSelectedText() === ""
     }
 
     $cursorsAtTheEnfOfLine()
     {
-        let ranges = this.$editor.selection.getAllRanges()
+        let ranges = this.ace.editor.selection.getAllRanges()
 
         for (let i = 0; i < ranges.length; i++)
         {
-            let line = this.$editor.session
-                .getLine(ranges[i].start.row)
+            let line = this.ace.editor.session.getLine(ranges[i].start.row)
 
             if (line.length > ranges[i].start.column)
                 return false

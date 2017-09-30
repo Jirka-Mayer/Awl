@@ -1,18 +1,20 @@
 @{%
 
-const math = require("../math.js")
+const math = require("../../math.js")
 
 function buildNumber([token])
 {
     return new math.expression.node.ConstantNode(
-        parseFloat(token.value)
+        token.value,
+        "number"
     )
 }
 
 function buildExponent([token])
 {
     return new math.expression.node.ConstantNode(
-        parseFloat(token.value)
+        token.value,
+        "number"
     )
 }
 

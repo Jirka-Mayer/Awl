@@ -1,5 +1,6 @@
 const nearley = require("nearley")
 const grammar = require("./nearley/grammar.js")
+const InputEmptyException = require("../Exceptions/InputEmptyException.js")
 const InputNotParsedException = require("../Exceptions/InputNotParsedException.js")
 const InputAmbiguousException = require("../Exceptions/InputAmbiguousException.js")
 
@@ -13,6 +14,9 @@ class Parser
     parse(row)
     {
         let tokens = this.tokenizer.getTokens(row)
+
+        if (tokens.length === 0)
+            throw new InputEmptyException()
 
         let parser = new nearley.Parser(
             nearley.Grammar.fromCompiled(grammar)
